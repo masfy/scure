@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ujian Sedang Berlangsung</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#a8dadc" />
+</head>
+<body oncontextmenu="return false">
+  <main class="container">
+    <iframe id="exam-frame" src="" frameborder="0"></iframe>
+  </main>
+
+  <script>
+    const url = localStorage.getItem("exam-url");
+    if (!url) {
+      alert("Tidak ada link ujian ditemukan.");
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("exam-frame").src = url;
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        alert("Kamu keluar dari halaman ujian!");
+      }
+    });
+
+    window.onload = () => {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      }
+    };
+  </script>
+</body>
+</html>
